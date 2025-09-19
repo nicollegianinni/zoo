@@ -17,7 +17,6 @@ public class AnimaisController {
 
     @Autowired
     private AnimaisService animaisService;
-    private AnimaisRepository animaisRepository;
 
     //lista de animais geral
     @GetMapping("/ListaAnimais")
