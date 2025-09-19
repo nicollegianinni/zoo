@@ -31,25 +31,25 @@ public class AnimaisController {
     }
 
     //buscar animal pelo nome
-    @GetMapping("/buscar/{nome}")
+    @GetMapping("/buscarPorNome/{nome}")
     public ResponseEntity<List<Animais>> buscarPorNome(@PathVariable String nome) {
         return ResponseEntity.ok(animaisService.listaDeAnimaisPorNome(nome));
     }
 
     //buscar animais pela idade exata
-    @GetMapping("/buscar/{idade}")
+    @GetMapping("/buscarPorIdade/{idade}")
     public ResponseEntity<List<Animais>> buscarpelaIdade(@PathVariable int idade) {
         return ResponseEntity.ok(animaisService.listaDeAnimaisPorIdade(idade));
     }
 
     //buscar animais pela idade maior que >
-    @GetMapping("/buscar/{idade}")
+    @GetMapping("/IdadeMaiorQue/{idade}")
     public ResponseEntity<List<Animais>> buscarPorIdadeMaiorQue(@PathVariable int idade) {
         return ResponseEntity.ok(animaisService.listaDeAnimaisComMaior(idade));
     }
 
     //buscar animais pela idade menor que <
-    @GetMapping("/buscar/{idade}")
+    @GetMapping("/IdadeMenorQue/{idade}")
     public ResponseEntity<List<Animais>> buscarPorIdadeMenorQue(@PathVariable int idade) {
         return ResponseEntity.ok(animaisService.listaDeAnimaisMenorQue(idade));
     }
