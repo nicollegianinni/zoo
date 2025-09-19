@@ -7,8 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CadastrarAnimais {
-
+public class CadastrarAnimaisService {
     private AnimaisRepository animaisRepository;
 
     public Animais cadastrarAnimal(String nome, int idade) {
@@ -19,4 +18,9 @@ public class CadastrarAnimais {
     public List<Animais> ListaDeAnimais() {
         return animaisRepository.findAll();
     }
+
+    public List<Animais> ListaDeAnimaisPorIdade() {
+        return animaisRepository.findById();
+    }
+
 }
