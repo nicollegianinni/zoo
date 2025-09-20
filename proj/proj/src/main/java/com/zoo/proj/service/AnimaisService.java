@@ -10,6 +10,11 @@ import java.util.List;
 public class AnimaisService {
     private AnimaisRepository animaisRepository;
 
+    // Injeção do construtor repository
+    public AnimaisService(AnimaisRepository animaisRepository) {
+        this.animaisRepository = animaisRepository;
+    }
+
     public Animais cadastrarAnimais(String nome, int idade) { //cadastrar animais
         Animais animais = new Animais(nome, idade);
         return animaisRepository.save(animais);
@@ -20,7 +25,7 @@ public class AnimaisService {
     }   // Lista geral de animais
 
     public List<Animais> listaDeAnimaisPorNome(String nome) {
-        return animaisRepository.findById();   //buscar animais pelo id nome
+        return animaisRepository.findByNome(nome);   //buscar animais pelo id, que é o nome
     }
 
     public List<Animais> listaDeAnimaisPorIdade(int idade) {   //  Buscar animais por idade exata
@@ -32,8 +37,18 @@ public class AnimaisService {
         return animaisRepository.findByIdadeGreaterThanEqual(idade);
     } // Buscar animais com idade maior ou igual >
 
-    // 🔹 Buscar animais com idade menor <
+    //  Buscar animais com idade menor <
     public List<Animais> listaDeAnimaisMenorQue(int idade) {
         return animaisRepository.findByIdadeLessThan(idade);
-    } // lista de animais menor que <
+    }
+
+
+    //deletar
+//    public List<Animais> deleteFindByIdAnimal(String nome) {
+//        return animaisRepository.deleteFindByIdAnimal(nome);
+//    }
+
+//    public void deletarPorNomeEIdade(String nome, int idade) {
+//        animaisRepository.deleteByNomeAndIdade(nome, idade);
+//    }
 }
