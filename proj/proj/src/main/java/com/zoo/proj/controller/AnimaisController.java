@@ -16,10 +16,8 @@ import java.util.Map;
 @RestController
 @RequestMapping
 public class AnimaisController {
-
     @Autowired
     private AnimaisService animaisService;
-
     @Autowired
     private AnimaisRepository animaisRepository; // para deletar diretamente dop db
 

@@ -2,7 +2,7 @@ package com.zoo.proj.repository;
 
 import com.zoo.proj.model.Animais;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.query.Param;
+
 
 import java.util.List;
 
