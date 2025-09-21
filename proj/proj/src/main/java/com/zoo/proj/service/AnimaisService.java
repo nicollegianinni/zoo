@@ -42,13 +42,4 @@ public class AnimaisService {
         return animaisRepository.findByIdadeLessThan(idade);
     }
 
-
-    //deletar
-//    public List<Animais> deleteFindByIdAnimal(String nome) {
-//        return animaisRepository.deleteFindByIdAnimal(nome);
-//    }
-
-//    public void deletarPorNomeEIdade(String nome, int idade) {
-//        animaisRepository.deleteByNomeAndIdade(nome, idade);
-//    }
 }

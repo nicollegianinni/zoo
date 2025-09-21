@@ -4,11 +4,13 @@ import com.zoo.proj.model.Animais;
 import com.zoo.proj.repository.AnimaisRepository;
 import com.zoo.proj.service.AnimaisService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 
 @RestController
@@ -59,21 +61,26 @@ public class AnimaisController {
         return ResponseEntity.ok(animaisService.listaDeAnimaisMenorQue(idade));
     }
 
-    //deletar por animal
-    @DeleteMapping("/deletaranimal/{nome}")
-    public ResponseEntity<Void> deletarAnimal(@PathVariable String nome) {
-        animaisRepository.deleteById(nome);
-        System.out.println("você deletou o animal " + nome);
-        return ResponseEntity.noContent().build(); // Retorna 204
-    }
-
-//
-//    @DeleteMapping("/deletaranimal/{id}")
-//    public ResponseEntity<?> delete(@PathVariable String nome) {
-//        return animaisRepository.findById(nome).map(resposta -> {
-//            animaisRepository.deleteById(nome);
-//            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-//        }).orElse(ResponseEntity.notFound().build());
+    //deletar por animal de modo simples com uma mensagem amigavel
+//    @DeleteMapping("/deletaranimal/{nome}")
+//    public ResponseEntity<String> deletarAnimal(@PathVariable String nome) {
+//        animaisRepository.deleteById(nome);
+//        return ResponseEntity.ok("Animal "+ nome + " apagado com sucesso!");
 //    }
+
+    //deletar de modo mais profissional, onde retorne um JSON com uma mensagem amigavel
+    @DeleteMapping("/deletaranimal/{nome}")
+    public ResponseEntity<Map<String, String>> deletarAnimal(@PathVariable String nome) {
+        Map<String, String> resposta = new HashMap<>();
+
+        if (animaisRepository.existsById(nome)) {
+            animaisRepository.deleteById(nome);
+            resposta.put("mensagem", " você deletou o animal " + nome + " com sucesso!");
+            return ResponseEntity.ok(resposta);
+        } else {
+            resposta.put("erro", "O animal: " + nome + " não foi encontrado.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(resposta);
+        }
+    }
 
 }
